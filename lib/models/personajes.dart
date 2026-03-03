@@ -17,7 +17,7 @@ class Personajes {
 
   factory Personajes.fromJson(Map<String, dynamic> json) {
     final int idPersonaje = json['id'] ?? 1;
-    String fullUrl = "https://thesimpsonsapi.com/character/$idPersonaje.webp";
+    String fullUrl = "https://cdn.thesimpsonsapi.com/200/character/${idPersonaje}.webp";
     String proxyUrl =
         "https://images.weserv.nl/?url=${Uri.encodeComponent(fullUrl)}";
     return Personajes(
