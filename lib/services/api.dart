@@ -4,6 +4,7 @@ import '../models/personajes.dart';
 
 class Api {
   static const String _baseUrl = 'https://thesimpsonsapi.com/api/characters';
+  
 
   Future<List<Personajes>> getPersonajes() async {
     final response = await http.get(Uri.parse(_baseUrl));
