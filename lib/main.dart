@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:losimpson/screens/episodios-screens.dart';
+import './screens/home-screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Los Simpson API',
       debugShowCheckedModeBanner: false,
-      home: const EpisodiosScreens(),
+      home: const HomeScreen(),
     );
   }
 }

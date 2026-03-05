@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:losimpson/screens/info_personajes.dart';
 import '../services/api.dart';
 import '../models/personajes.dart';
-import 'info_personajes.dart';
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -20,7 +17,7 @@ class HomeScreen extends StatelessWidget {
               width: 100,
               height: 60,
               fit: BoxFit
-                  .contain, // Controla cómo se ajusta la imagen al espacio
+                  .contain, // Controla como se ajusta la imagen al espacio
             ),
             SizedBox(width: 20),
             Text(
@@ -32,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(width: 350),
+            SizedBox(width: 150),
             GestureDetector(
               // onTap: () {
               //   Navigator.push(
@@ -64,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 600),
+            SizedBox(width: 300),
             SizedBox(
               width: 300,
               height: 40,
@@ -202,7 +199,7 @@ class HomeScreen extends StatelessWidget {
                     );
                   }
 
-                  final Personajes = snapShot.data!;
+                  final personajes = snapShot.data!;
                   return GridView.builder(
                     padding: EdgeInsets.all(10),
                     gridDelegate:
@@ -210,11 +207,11 @@ class HomeScreen extends StatelessWidget {
                           crossAxisCount: 4,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
-                          childAspectRatio: 1.3,
+                          childAspectRatio: 1.1,
                         ),
-                    itemCount: Personajes.length,
+                    itemCount: personajes.length,
                     itemBuilder: (context, index) {
-                      final personaje = Personajes[index];
+                      final personaje = personajes[index];
                       return Card(
                         elevation: 2,
                         shape: RoundedRectangleBorder(
@@ -266,16 +263,15 @@ class HomeScreen extends StatelessWidget {
                                     vertical: 12,
                                   ),
                                 ),
-                                onPressed: () {},
-                                // onPressed: () {
-                                //   Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //       builder: (context) =>
-                                //           InfoPersonajes(personaje: personaje),
-                                //     ),
-                                //   );
-                                // },
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          Detalles(personajes: personaje),
+                                    ),
+                                  );
+                                },
                                 child: const Text('Ver personaje'),
                               ),
                             ],
