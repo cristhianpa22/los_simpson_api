@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:losimpson/screens/info_personajes.dart';
 import '../services/api.dart';
 import '../models/personajes.dart';
+import 'info_personajes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -100,7 +103,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-
         backgroundColor: const Color.fromARGB(255, 255, 217, 0),
       ),
       body: Center(
