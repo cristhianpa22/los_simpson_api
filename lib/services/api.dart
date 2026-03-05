@@ -30,4 +30,5 @@ class Api{
       throw ("No se pudo conectar con la API");
     }
   }
+  
 }
