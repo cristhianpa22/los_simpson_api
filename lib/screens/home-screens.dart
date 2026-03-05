@@ -80,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),                   
+                    ),
                     Positioned(
                       bottom: -60,
                       left: 0,
@@ -98,6 +98,90 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            const Text(
+              "Personajes",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 30),
+            Expanded(
+              child: FutureBuilder<List<Personajes>>(
+                future: Api().getPersonajes(),
+                builder: (context, snapShot) {
+                  if (snapShot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  if (snapShot.hasError) {
+                    return Center(
+                      child: Text('Error al cargar los personajes'),
+                    );
+                  }
+
+                  final Personajes = snapShot.data!;
+                  return GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20,
+                          childAspectRatio: 1.5,
+                        ),
+                    itemCount: Personajes.length,
+                    itemBuilder: (context, index) {
+                      final personaje = Personajes[index];
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 100,
+                                backgroundImage: NetworkImage(personaje.imagen),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                personaje.nombre,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+
+                              ElevatedButton(
+                                onPressed: () {},
+                                // onPressed: () {
+                                //   Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //       builder: (context) =>
+                                //           InfoPersonajes(personaje: personaje),
+                                //     ),
+                                //   );
+                                // },
+                                child: const Text('Ver personaje'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ],
