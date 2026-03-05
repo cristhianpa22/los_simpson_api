@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:losimpson/screens/home-screens.dart';
+import 'package:losimpson/screens/episodios-screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Los Simpson API',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.quicksandTextTheme(),
-      ),
-      home: const HomeScreen(),
+      home: const EpisodiosScreens(),
     );
   }
 }
