@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/api.dart';
 import '../models/personajes.dart';
+import '../screens/episodios-screens.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,12 +32,12 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(width: 350),
             GestureDetector(
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => const ()),
-              //   );
-              // },
+               onTap: () {
+                 Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context) => const EpisodiosScreens()),
+               );
+              },
               child: Text(
                 "Episodios",
                 style: TextStyle(
