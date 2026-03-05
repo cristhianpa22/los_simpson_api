@@ -8,12 +8,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(142, 255, 217, 0),
       appBar: AppBar(
         title: Row(
           children: [
             Image.asset(
-              'lib/assets/images/the-simpsons-6-logo-png-transparent.png',
-              width: 80,
+              'lib/assets/images/logo.png',
+              width: 100,
               height: 60,
               fit: BoxFit
                   .contain, // Controla cómo se ajusta la imagen al espacio
@@ -22,19 +23,94 @@ class HomeScreen extends StatelessWidget {
             Text(
               'Springfield Galeria',
               style: TextStyle(
-                color: Color.fromARGB(255, 38, 155, 250),
-                fontSize: 20,
+                fontFamily: 'SimpsonFont',
+                color: Color.fromARGB(255, 83, 149, 203),
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            SizedBox(width: 350),
+            GestureDetector(
+              // onTap: () {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => const ()),
+              //   );
+              // },
+              child: Text(
+                "Episodios",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 66, 47, 0),
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            SizedBox(width: 20),
+            GestureDetector(
+              // onTap: () {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => const ()),
+              //   );
+              // },
+              child: Text(
+                "Locaciones",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 66, 47, 0),
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            SizedBox(width: 600),
+            SizedBox(
+              width: 300,
+              height: 40,
+              child: TextField(
+                style: TextStyle(
+                  color: const Color.fromARGB(255, 0, 0, 0),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color.fromARGB(255, 255, 255, 255),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  hintText: "Buscar personaje",
+                  prefixIcon: Icon(Icons.search),
+                  hintStyle: TextStyle(
+                    color: const Color.fromARGB(255, 21, 21, 21),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 20),
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Icon(Icons.person),
             ),
           ],
         ),
 
-        backgroundColor: const Color.fromARGB(221, 255, 232, 29),
+        backgroundColor: const Color.fromARGB(255, 255, 217, 0),
       ),
       body: Center(
         child: Column(
           children: [
+            const Divider(
+              color: Color.fromARGB(255, 170, 187, 223),
+              thickness: 5,
+              height: 5,
+            ),
             SizedBox(height: 20),
             Card(
               elevation: 3,
@@ -104,6 +180,7 @@ class HomeScreen extends StatelessWidget {
             const Text(
               "Personajes",
               style: TextStyle(
+                fontFamily: 'SimpsonFont',
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
@@ -125,21 +202,25 @@ class HomeScreen extends StatelessWidget {
 
                   final Personajes = snapShot.data!;
                   return GridView.builder(
+                    padding: EdgeInsets.all(10),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
-                          mainAxisSpacing: 20,
-                          crossAxisSpacing: 20,
-                          childAspectRatio: 1.5,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 1.3,
                         ),
                     itemCount: Personajes.length,
                     itemBuilder: (context, index) {
                       final personaje = Personajes[index];
                       return Card(
+                        elevation: 2,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Container(
+                          margin: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(10),
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
@@ -155,14 +236,34 @@ class HomeScreen extends StatelessWidget {
                               const SizedBox(height: 10),
                               Text(
                                 personaje.nombre,
-                                style: TextStyle(
-                                  fontSize: 20,
+                                style: const TextStyle(
+                                  fontFamily: 'SimpsonFont',
+                                  fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               const SizedBox(height: 10),
 
                               ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.blueAccent,
+                                  foregroundColor: const Color.fromARGB(
+                                    255,
+                                    231,
+                                    243,
+                                    2,
+                                  ),
+                                  elevation: 8,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                      4,
+                                    ),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 12,
+                                  ),
+                                ),
                                 onPressed: () {},
                                 // onPressed: () {
                                 //   Navigator.push(
