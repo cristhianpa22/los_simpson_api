@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:losimpson/screens/modal.dart';
 import '../services/api.dart';
 import '../models/episodios.dart';
+import './locations-screen.dart';
 
 class EpisodiosScreens extends StatefulWidget {
   const EpisodiosScreens({super.key});
@@ -88,13 +89,24 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
             const Spacer(),
 
             // 3. Elementos de la derecha
-            const Text(
-              "Locaciones",
-              style: TextStyle(
-                color: Color.fromARGB(255, 66, 47, 0),
-                fontSize: 18,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LocationScreen(),
+                  ),
+                );
+              },
+              child: const Text(
+                "Locaciones",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 66, 47, 0),
+                  fontSize: 18,
+                ),
               ),
             ),
+
             const SizedBox(width: 20),
 
             // 4. Expanded obliga al buscador a adaptarse al espacio restante
@@ -283,7 +295,8 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                                     width: 6,
                                   ),
                                 ),
-                                child:Hero(tag: 'episodio_${ep.id}',
+                                child: Hero(
+                                  tag: 'episodio_${ep.id}',
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
@@ -292,8 +305,7 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                                       width: double.infinity,
                                     ),
                                   ),
-                                
-                                )
+                                ),
                               ),
                               const SizedBox(height: 16),
                               Expanded(
@@ -335,11 +347,12 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
 
                                     // Icono de reproducción amarillo
                                     GestureDetector(
-                                       onTap: () {
-                                         showDialog(
-                                           context: context,
-                                           builder: (context) => Modal(episodio: ep),
-                                         );
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              Modal(episodio: ep),
+                                        );
                                       },
                                       child: Container(
                                         padding: const EdgeInsets.all(8),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:losimpson/screens/info_personajes.dart';
+import 'package:losimpson/screens/locations-screen.dart';
 import '../services/api.dart';
 import '../models/personajes.dart';
 import '../screens/episodios-screens.dart';
@@ -47,12 +48,12 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(width: 20),
             GestureDetector(
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => const ()),
-              //   );
-              // },
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LocationScreen()),
+                );
+              },
               child: Text(
                 "Locaciones",
                 style: TextStyle(
