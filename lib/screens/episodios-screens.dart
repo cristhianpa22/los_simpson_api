@@ -3,6 +3,7 @@ import 'package:losimpson/screens/modal.dart';
 import '../services/api.dart';
 import '../models/episodios.dart';
 import './locations-screen.dart';
+import '../screens/home-screens.dart';
 
 class EpisodiosScreens extends StatefulWidget {
   const EpisodiosScreens({super.key});
@@ -67,7 +68,6 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
       appBar: AppBar(
         title: Row(
           children: [
-            // 1. Elementos de la izquierda
             Image.asset(
               'lib/assets/images/logo.png',
               width: 100,
@@ -85,34 +85,53 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
               ),
             ),
 
-            // 2. Este Spacer empujará todo lo que sigue hacia la derecha
             const Spacer(),
 
-            // 3. Elementos de la derecha
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LocationScreen(),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LocationScreen(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Locations",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 66, 47, 0),
+                    fontSize: 18,
                   ),
-                );
-              },
-              child: const Text(
-                "Locaciones",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 66, 47, 0),
-                  fontSize: 18,
                 ),
               ),
             ),
-
+            const SizedBox(width: 20),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Personajes",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 66, 47, 0),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(width: 20),
 
-            // 4. Expanded obliga al buscador a adaptarse al espacio restante
             Expanded(
-              flex:
-                  1, // Puedes ajustar esto si quieres que el buscador sea más grande o pequeño
+              flex: 1,
               child: SizedBox(
                 height: 40,
                 child: TextField(
@@ -257,7 +276,7 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                   crossAxisCount: 4,
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
-                  childAspectRatio: 1.23,
+                  childAspectRatio: 1.2,
                 ),
                 itemCount: episodiosFiltrados.length,
                 itemBuilder: (context, index) {
