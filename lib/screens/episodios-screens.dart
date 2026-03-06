@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:losimpson/screens/modal.dart';
 import '../services/api.dart';
 import '../models/episodios.dart';
-import 'home-screens.dart';
 
 class EpisodiosScreens extends StatefulWidget {
   const EpisodiosScreens({super.key});
@@ -62,20 +62,19 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
       return Center(child: Text('Error: $_error'));
     }
     return Scaffold(
-      backgroundColor:const Color.fromARGB(142, 255, 217, 0),
+      backgroundColor: const Color.fromARGB(142, 255, 217, 0),
       appBar: AppBar(
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // 1. Elementos de la izquierda
             Image.asset(
               'lib/assets/images/logo.png',
               width: 100,
               height: 60,
-              fit: BoxFit
-                  .contain, // Controla cómo se ajusta la imagen al espacio
+              fit: BoxFit.contain,
             ),
-            SizedBox(width: 20),
-            Text(
+            const SizedBox(width: 20),
+            const Text(
               'Springfield Galeria',
               style: TextStyle(
                 fontFamily: 'SimpsonFont',
@@ -84,51 +83,43 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(width: 350),
-            //SizedBox(width: 20),
-            GestureDetector(
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => const ()),
-              //   );
-              // },
-              child: Text(
-                "Locaciones",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 66, 47, 0),
-                  fontSize: 18,
-                ),
+
+            // 2. Este Spacer empujará todo lo que sigue hacia la derecha
+            const Spacer(),
+
+            // 3. Elementos de la derecha
+            const Text(
+              "Locaciones",
+              style: TextStyle(
+                color: Color.fromARGB(255, 66, 47, 0),
+                fontSize: 18,
               ),
             ),
-            SizedBox(width: 600),
-            SizedBox(
-              width: 300,
-              height: 40,
-              child: TextField(
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Color.fromARGB(255, 255, 255, 255),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  hintText: "Buscar personaje",
-                  prefixIcon: Icon(Icons.search),
-                  hintStyle: TextStyle(
-                    color: const Color.fromARGB(255, 21, 21, 21),
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            const SizedBox(width: 20),
+
+            // 4. Expanded obliga al buscador a adaptarse al espacio restante
+            Expanded(
+              flex:
+                  1, // Puedes ajustar esto si quieres que el buscador sea más grande o pequeño
+              child: SizedBox(
+                height: 40,
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
+                    ),
+                    hintText: "Buscar personaje",
+                    prefixIcon: const Icon(Icons.search),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 5),
                   ),
                 ),
               ),
             ),
-            SizedBox(width: 20),
+
+            const SizedBox(width: 20),
             Container(
               width: 40,
               height: 40,
@@ -136,27 +127,25 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Icon(Icons.person),
+              child: const Icon(Icons.person),
             ),
           ],
         ),
-
         backgroundColor: const Color.fromARGB(255, 255, 217, 0),
       ),
 
       body: SingleChildScrollView(
-        
         padding: const EdgeInsets.all(2),
         child: SizedBox(
-          
           width: double.infinity,
           child: Column(
             children: [
               const Divider(
-              color: Color.fromARGB(255, 170, 187, 223),
-              thickness: 5,
-              height: 5,
-            ),
+                color: Color.fromARGB(255, 170, 187, 223),
+                thickness: 5,
+                height: 5,
+              ),
+              const SizedBox(height: 45),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -208,7 +197,7 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       SizedBox(
-                        width: 300,
+                        width: 250,
                         height: 40,
                         child: DropdownButtonFormField<int>(
                           initialValue: _temporadaSeleccionada,
@@ -248,7 +237,7 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                   ),
                 ],
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 25),
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -256,19 +245,21 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                   crossAxisCount: 4,
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
-                  childAspectRatio: 4 / 3,
+                  childAspectRatio: 1.23,
                 ),
                 itemCount: episodiosFiltrados.length,
                 itemBuilder: (context, index) {
                   final ep = episodiosFiltrados[index];
                   return Card(
+                    elevation: 0,
+                    color: const Color.fromARGB(223, 24, 24, 22),
                     child: Column(
                       children: [
                         Container(
-                          width: 320,
-                          height: 230,
+                          width: double.infinity,
+                          height: 300,
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(49, 24, 24, 22),
+                            color: const Color.fromARGB(223, 24, 24, 22),
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
@@ -284,7 +275,7 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: 120, // Altura de la imagen
+                                height: 160, // Altura de la imagen
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   border: Border.all(
@@ -292,14 +283,17 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                                     width: 6,
                                   ),
                                 ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.network(
-                                    ep.imagen,
-                                    fit: BoxFit.cover,
-                                    width: double.infinity,
+                                child:Hero(tag: 'episodio_${ep.id}',
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      ep.imagen,
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                    ),
                                   ),
-                                ),
+                                
+                                )
                               ),
                               const SizedBox(height: 16),
                               Expanded(
@@ -338,17 +332,26 @@ class _EpisodiosscreensState extends State<EpisodiosScreens> {
                                         ],
                                       ),
                                     ),
+
                                     // Icono de reproducción amarillo
-                                    Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: const BoxDecoration(
-                                        color: Colors.yellow,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: const Icon(
-                                        Icons.play_arrow,
-                                        color: Colors.black,
-                                        size: 20,
+                                    GestureDetector(
+                                       onTap: () {
+                                         showDialog(
+                                           context: context,
+                                           builder: (context) => Modal(episodio: ep),
+                                         );
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: const BoxDecoration(
+                                          color: Colors.yellow,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Icon(
+                                          Icons.play_arrow,
+                                          color: Colors.black,
+                                          size: 20,
+                                        ),
                                       ),
                                     ),
                                   ],
