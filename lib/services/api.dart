@@ -8,7 +8,8 @@ class Api {
   static const String _urlPersonajes =
       'https://thesimpsonsapi.com/api/characters';
   static const String _urlEpisodios = 'https://thesimpsonsapi.com/api/episodes';
-  static const String _urlLocations = 'https://thesimpsonsapi.com/api/locations';
+  static const String _urlLocations =
+      'https://thesimpsonsapi.com/api/locations';
 
   Future<List<Personajes>> getPersonajes() async {
     final response = await http.get(Uri.parse(_urlPersonajes));
@@ -25,7 +26,7 @@ class Api {
   Future<List<Episodios>> getEpisodios() async {
     final response = await http.get(Uri.parse(_urlEpisodios));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 404) {
       final Map<String, dynamic> decodedData = json.decode(response.body);
       List<dynamic> body = decodedData['results'];
       return body.map((dynamic item) => Episodios.fromJson(item)).toList();
@@ -37,7 +38,7 @@ class Api {
   Future<List<Location>> getLocaciones() async {
     final response = await http.get(Uri.parse(_urlLocations));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 404) {
       final Map<String, dynamic> decodedData = json.decode(response.body);
       List<dynamic> body = decodedData['results'];
       return body.map((dynamic item) => Location.fromJson(item)).toList();
