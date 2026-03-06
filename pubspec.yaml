@@ -71,6 +71,7 @@ flutter:
   assets:
     - lib/assets/images/logo.png
     - lib/assets/images/nube.webp
+    - lib/assets/images/lisa.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
