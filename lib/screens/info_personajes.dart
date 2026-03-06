@@ -81,13 +81,16 @@ class Detalles extends StatelessWidget {
                                   left: 5,
                                   right: 5,
                                 ),
-                                child: ClipRRect(
+                                child: Hero(
+                                  tag:  personajes.nombre,  
+                                  child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
                                     personajes.imagen,
                                     fit: BoxFit.contain,
                                   ),
-                                ),
+                                ),),
+                                
                               ),
                             ),
                           ),
