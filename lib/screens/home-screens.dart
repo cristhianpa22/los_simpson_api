@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(142, 255, 217, 0),
-      appBar: AppBar(
+            appBar: AppBar(
         title: Row(
           children: [
             Image.asset(
@@ -21,8 +21,8 @@ class HomeScreen extends StatelessWidget {
               height: 60,
               fit: BoxFit.contain,
             ),
-            SizedBox(width: 20),
-            Text(
+            const SizedBox(width: 20),
+            const Text(
               'Springfield Galeria',
               style: TextStyle(
                 fontFamily: 'SimpsonFont',
@@ -31,12 +31,40 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(width: 150),
+
+            const Spacer(),
+
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => const EpisodiosScreens()),);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LocationScreen(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Locations",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 66, 47, 0),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 20),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EpisodiosScreens(),
+                    ),
+                  );
                 },
                 child: const Text(
                   "Episodios",
@@ -48,49 +76,28 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LocationScreen()),
-                );
-              },
-              child: Text(
-                "Locaciones",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 66, 47, 0),
-                  fontSize: 18,
-                ),
-              ),
-            ),
-            SizedBox(width: 300),
-            SizedBox(
-              width: 300,
-              height: 40,
-              child: TextField(
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Color.fromARGB(255, 255, 255, 255),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  hintText: "Buscar personaje",
-                  prefixIcon: Icon(Icons.search),
-                  hintStyle: TextStyle(
-                    color: const Color.fromARGB(255, 21, 21, 21),
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+
+            Expanded(
+              flex: 1,
+              child: SizedBox(
+                height: 40,
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
+                    ),
+                    hintText: "Buscar personaje",
+                    prefixIcon: const Icon(Icons.search),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 5),
                   ),
                 ),
               ),
             ),
-            SizedBox(width: 20),
+
+            const SizedBox(width: 20),
             Container(
               width: 40,
               height: 40,
@@ -98,13 +105,17 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Icon(Icons.person),
+              child: const Icon(Icons.person),
             ),
           ],
         ),
         backgroundColor: const Color.fromARGB(255, 255, 217, 0),
       ),
-      body: Center(
+
+      body: 
+      Center(
+
+      child: SingleChildScrollView(
         child: Column(
           children: [
             const Divider(
@@ -192,7 +203,7 @@ class HomeScreen extends StatelessWidget {
                                 Column(
                                   children: [
                                     SizedBox(height: 60),
-                                    Container(
+                                    SizedBox(
                                       width: 250,
                                       height: 250,
                                       child: Image.network(
@@ -222,8 +233,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Expanded(
-              child: FutureBuilder<List<Personajes>>(
+            
+               FutureBuilder<List<Personajes>>(
                 future: Api().getPersonajes(),
                 builder: (context, snapShot) {
                   if (snapShot.connectionState == ConnectionState.waiting) {
@@ -238,6 +249,8 @@ class HomeScreen extends StatelessWidget {
 
                   final personajes = snapShot.data!;
                   return GridView.builder(
+                    shrinkWrap:true,
+                    physics: const NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.all(10),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -318,10 +331,11 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
-            ),
+            
           ],
         ),
       ),
+      )
     );
   }
 }

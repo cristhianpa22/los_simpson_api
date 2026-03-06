@@ -14,14 +14,14 @@ class Location {
   });
 
   factory Location.fromJson(Map<String, dynamic> json) {
-    final int idLocation = json['id'] ?? 1;
-    String fullUrl = "https://thesimpsonsapi.com/api/locations/${idLocation}.webp";
+    final int idLocation = json['id'] ?? 0;
+    String fullUrl = "https://cdn.thesimpsonsapi.com/200/location/${idLocation}.webp";
     String proxyUrl = "https://images.weserv.nl/?url=${Uri.encodeComponent(fullUrl)}";
     return Location(
-      id: json['id'] ?? 0, 
+    id: json['id'] ?? 0, 
     name: json['name'] ?? 'Sin Registro', 
     image: proxyUrl, 
-    town: json['town'] ?? 'No Hay Pueblo Registrado', 
+    town: json['town'] ?? 'No Registro', 
     use: json['use'] ?? 'No Se Usa En Ningun Espacio',
     );
   }

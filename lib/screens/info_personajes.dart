@@ -8,7 +8,7 @@ class Detalles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 221, 223, 233),
+      backgroundColor: const Color.fromARGB(255, 198, 181, 245),
       appBar: AppBar(
         title: Text(
           personajes.nombre,
@@ -106,216 +106,229 @@ class Detalles extends StatelessWidget {
                             bottomRight: Radius.circular(10),
                           ),
                         ),
-                        child: SizedBox(
-                          height: 470,
+                        child: Container(
                           width: 580,
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: 250,
-                                      height: 35,
-                                      decoration: BoxDecoration(
-                                        color: Colors.amber,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(12),
-                                        ),
-                                      ),
-                                      child: Center(
-                                        child: const Text(
-                                          "Tarjeta De Personaje",
-                                        ),
+                          constraints: const BoxConstraints(minHeight: 470),
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 250,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                      color: Colors.amber,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(12),
                                       ),
                                     ),
-                                  ],
-                                ),
-                                const SizedBox(height: 20),
-                                Row(
-                                  children: [
-                                    const Text(
-                                      "Nombre: ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
+                                    child: Center(
+                                      child: const Text("Tarjeta De Personaje"),
                                     ),
-                                    Text(
-                                      personajes.nombre,
-                                      style: const TextStyle(fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 20),
-                                Row(
-                                  children: [
-                                    const Text(
-                                      "Ocupacion: ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Text(
-                                      personajes.ocupacion ?? 'Sin ocupación',
-                                      style: const TextStyle(fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 20),
-                                Row(
-                                  children: [
-                                    const Text(
-                                      "Genero: ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Text(
-                                      personajes.genero,
-                                      style: const TextStyle(fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 20),
-                                Row(
-                                  children: [
-                                    const Text(
-                                      "Edad: ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Text(
-                                      "${personajes.edad}",
-                                      style: const TextStyle(fontSize: 18),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ), // Espacio grande antes de la frase
-
-                                Center(
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.format_quote_rounded,
-                                        color: Colors.amber.withOpacity(0.3),
-
-                                        size: 120,
-                                      ),
-
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                        ),
-                                        child: Text(
-                                          personajes.frase,
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FontStyle.italic,
-                                            color: Colors.black87,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
                                   ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                children: [
+                                  const Text(
+                                    "Nombre: ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Text(
+                                    personajes.nombre,
+                                    style: const TextStyle(fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Ocupacion: ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      personajes.ocupacion,
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                children: [
+                                  const Text(
+                                    "Genero: ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Text(
+                                    personajes.genero,
+                                    style: const TextStyle(fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                children: [
+                                  const Text(
+                                    "Edad: ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${personajes.edad}",
+                                    style: const TextStyle(fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ), // Espacio grande antes de la frase
+
+                              Center(
+                                child: Stack(
+                                  alignment: Alignment.center,
                                   children: [
-                                    MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 12,
-                                            vertical: 8,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: Colors.red.withOpacity(0.1),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                            border: Border.all(
-                                              color: Colors.red,
-                                            ),
-                                          ),
-                                          child: const Row(
-                                            children: [
-                                              Icon(
-                                                Icons.favorite,
-                                                color: Colors.red,
-                                                size: 18,
-                                              ),
-                                              SizedBox(width: 5),
-                                              Text(
-                                                "Me gusta",
-                                                style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
+                                    Icon(
+                                      Icons.format_quote_rounded,
+                                      color: Colors.amber.withOpacity(0.3),
+
+                                      size: 120,
                                     ),
 
-                                    const SizedBox(width: 15),
-
-                                    MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 12,
-                                            vertical: 8,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: Colors.blue.withOpacity(0.1),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
+                                    const SizedBox(height: 5),
+                                    Flexible(
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.format_quote_rounded,
+                                            color: Colors.amber.withOpacity(
+                                              0.2,
                                             ),
-                                            border: Border.all(
-                                              color: Colors.blue,
+                                            size: 100,
+                                          ),
+                                          Expanded(
+                                              
+                                            child:
+                                          Text(
+                                            personajes.frase,
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: 18,
+                                              fontStyle: FontStyle.italic,
                                             ),
                                           ),
-                                          child: const Row(
-                                            children: [
-                                              Icon(
-                                                Icons.share,
-                                                color: Colors.blue,
-                                                size: 18,
-                                              ),
-                                              SizedBox(width: 5),
-                                              Text(
-                                                "Compartir",
-                                                style: TextStyle(
-                                                  color: Colors.blue,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
+                                          
                                           ),
-                                        ),
+                                        ],
                                       ),
                                     ),
+                                    const Spacer(),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 8,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.red.withOpacity(0.1),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          border: Border.all(color: Colors.red),
+                                        ),
+                                        child: const Row(
+                                          children: [
+                                            Icon(
+                                              Icons.favorite,
+                                              color: Colors.red,
+                                              size: 18,
+                                            ),
+                                            SizedBox(width: 5),
+                                            Text(
+                                              "Me gusta",
+                                              style: TextStyle(
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  const SizedBox(width: 15),
+
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 8,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue.withOpacity(0.1),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          border: Border.all(
+                                            color: Colors.blue,
+                                          ),
+                                        ),
+                                        child: const Row(
+                                          children: [
+                                            Icon(
+                                              Icons.share,
+                                              color: Colors.blue,
+                                              size: 18,
+                                            ),
+                                            SizedBox(width: 5),
+                                            Text(
+                                              "Compartir",
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
