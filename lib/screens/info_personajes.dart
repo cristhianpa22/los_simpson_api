@@ -24,7 +24,7 @@ class Detalles extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 50),
         child: Center(
-            child: Card(
+          child: Card(
             // ignore: sort_child_properties_last
             child: Container(
               height: 500,
@@ -37,6 +37,7 @@ class Detalles extends StatelessWidget {
                     children: [
                       Card(
                         margin: EdgeInsets.zero,
+                       ),
                         color: const Color.fromARGB(255, 2, 133, 150), 
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10))),
                         child: SizedBox( 
@@ -60,10 +61,7 @@ class Detalles extends StatelessWidget {
                               ),
                             ),
                           ),
-
                         ),
-                        ),
-                        
                       ),
                     ],
                   ),
@@ -217,16 +215,17 @@ class Detalles extends StatelessWidget {
                           ),
                         ),
                         ),
+                        child: SizedBox(height: 470, width: 580),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
             color: const Color.fromARGB(255, 238, 191, 2),
           ),
         ),
-      )
+      ),
     );
   }
 }

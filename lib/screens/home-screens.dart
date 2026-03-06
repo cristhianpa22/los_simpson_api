@@ -3,6 +3,7 @@ import 'package:losimpson/screens/info_personajes.dart';
 import '../services/api.dart';
 import '../models/personajes.dart';
 import '../screens/episodios-screens.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -112,70 +113,105 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Card(
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              color: const Color.fromARGB(255, 50, 150, 207),
-              child: Container(
+              color: const Color.fromARGB(255, 74, 74, 74),
+              child: SizedBox(
                 width: 900,
-                height: 300,
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            "Galeria de personajes",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Text(
-                            "de los simpson",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 40),
-                            child: Text(
-                              "¡Bienvenidos a la ciudad de Springfield! Explora nuestra colección de personajes.",
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: -60,
-                      left: 0,
-                      right: 0,
+                height: 400,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Card(
+                    color: const Color.fromARGB(255, 37, 37, 37),
+                    child: SizedBox(
+                      width: 870,
+                      height: 370,
                       child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Image.asset(
-                          'lib/assets/images/nube.webp',
-                          width: 160,
-                          height: 160,
-                          fit: BoxFit
-                              .contain,
+                        alignment: Alignment.center,
+                        child: Card(
+                          color: const Color.fromARGB(248, 75, 74, 75),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(
+                              color: Color.fromARGB(255, 1, 1, 1),
+                              width: 6,
+                            ),
+                          ),
+                          child: SizedBox(
+                            width: 830,
+                            height: 330,
+                            child: Row(
+                              children: [
+                                SizedBox(width: 30),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 350,
+                                      height: 160,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      padding: const EdgeInsets.all(20),
+                                      child: const Text(
+                                        '"Springfield puede tener muchos problemas, pero sigue siendo nuestro hogar."',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 20),
+                                    Container(
+                                      width: 170,
+                                      height: 70,
+                                      padding: const EdgeInsets.all(20),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Color.fromARGB(
+                                          255,
+                                          22,
+                                          110,
+                                          197,
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        "Lisa Simpson",
+                                        style: TextStyle(
+                                          fontFamily: 'SimpsonFont',
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(width: 80),
+                                Column(
+                                  children: [
+                                    SizedBox(height: 60),
+                                    Container(
+                                      width: 250,
+                                      height: 250,
+                                      child: Image.network(
+                                        'lib/assets/images/lisa.png',
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             const Text(
               "Personajes",
               style: TextStyle(
@@ -184,7 +220,7 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             Expanded(
               child: FutureBuilder<List<Personajes>>(
                 future: Api().getPersonajes(),
@@ -207,7 +243,7 @@ class HomeScreen extends StatelessWidget {
                           crossAxisCount: 4,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
-                          childAspectRatio: 1.1,
+                          childAspectRatio: 1.3,
                         ),
                     itemCount: personajes.length,
                     itemBuilder: (context, index) {
@@ -228,9 +264,14 @@ class HomeScreen extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              CircleAvatar(
-                                radius: 100,
-                                backgroundImage: NetworkImage(personaje.imagen),
+                              Hero(
+                                tag: personaje.nombre,
+                                child: CircleAvatar(
+                                  radius: 100,
+                                  backgroundImage: NetworkImage(
+                                    personaje.imagen,
+                                  ),
+                                ),
                               ),
                               const SizedBox(height: 10),
                               Text(
@@ -250,9 +291,7 @@ class HomeScreen extends StatelessWidget {
                                   foregroundColor: const Color.fromARGB(255,231,243,2,),
                                   elevation: 8,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      4,
-                                    ),
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 20,
