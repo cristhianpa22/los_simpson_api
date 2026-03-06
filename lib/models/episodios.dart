@@ -4,6 +4,7 @@ class Episodios {
   final int episodio;
   final String nombre_episodio;
   final int temporada;
+  final String descripcion;
   final String imagen;
 
   Episodios({
@@ -12,6 +13,7 @@ class Episodios {
     required this.episodio,
     required this.nombre_episodio,
     required this.temporada,
+    required this.descripcion,
     required this.imagen,
   });
   factory Episodios.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class Episodios {
       episodio: json['episode_number'] ?? 0,
       nombre_episodio: json['name'] ?? 'bart no nace',
       temporada: json['season'] ?? 0,
+      descripcion: json['synopsis'] ?? 'Esta fue una prediccion',
       imagen: proxyUrl,
     );
   }

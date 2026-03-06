@@ -18,8 +18,7 @@ class HomeScreen extends StatelessWidget {
               'lib/assets/images/logo.png',
               width: 100,
               height: 60,
-              fit: BoxFit
-                  .contain, // Controla como se ajusta la imagen al espacio
+              fit: BoxFit.contain,
             ),
             SizedBox(width: 20),
             Text(
@@ -32,24 +31,22 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(width: 150),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const EpisodiosScreens(),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => const EpisodiosScreens()),);
+                },
+                child: const Text(
+                  "Episodios",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 66, 47, 0),
+                    fontSize: 18,
                   ),
-                );
-              },
-              child: Text(
-                "Episodios",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 66, 47, 0),
-                  fontSize: 18,
                 ),
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             GestureDetector(
               // onTap: () {
               //   Navigator.push(
@@ -288,14 +285,10 @@ class HomeScreen extends StatelessWidget {
                               const SizedBox(height: 10),
 
                               ElevatedButton(
+                                
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blueAccent,
-                                  foregroundColor: const Color.fromARGB(
-                                    255,
-                                    231,
-                                    243,
-                                    2,
-                                  ),
+                                  foregroundColor: const Color.fromARGB(255,231,243,2,),
                                   elevation: 8,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(4),
