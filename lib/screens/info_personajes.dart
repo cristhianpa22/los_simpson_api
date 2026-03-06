@@ -8,8 +8,9 @@ class Detalles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 198, 181, 245),
+      backgroundColor: const Color.fromARGB(255, 247, 237, 178),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 231, 163, 54),
         title: Text(
           personajes.nombre,
           style: TextStyle(
